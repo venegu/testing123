@@ -1,0 +1,49 @@
+body, 
+textarea, 
+input {
+	font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.chat{
+	max-width: 400px;
+	padding-top: 25px;
+	padding-left: 50px;
+}
+
+.c-messages, 
+.c-textarea,
+.c-name {
+	border:2px solid #bbb;
+}
+
+.c-messages {
+	width: 100%;
+	height: 300px;
+	overflow-y: scroll; /* chat message scroll bar */
+}
+.c-messages{
+	margin-bottom: 20px;
+}
+
+.c-name{
+	width: 100%; 
+	padding:10px;
+	border-bottom: 0;
+	margin: 0;
+}
+
+.c-textarea {
+	width: 100%;
+	padding: 10px;
+	border-top: 0; 
+	margin: 0;
+	max-width: 100%;
+}
+
+.c-status{
+	color:#bbb; /* graying it out */
+}
+.c-textarea,
+.c-name{
+	outline: none; /* removes blue outline when clicking on name and input box */
+}
