@@ -1,2 +1,2 @@
-# testing123
-Playground for testing web goodies.
+#Vitanao
+Spur of the moment bones to a chat application. Just for fun 😸!
