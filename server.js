@@ -18,11 +18,19 @@ mongo.connect('mongodb://127.0.0.1/chat', function(err, db){
 			/* grabbing data */
 			var name = data.name;
 			var message = data.message;
+			/* Checking for whitespace - regular expression */
+			whiteSpacePattern = /^\s*$/;
 
-			/* Inserting into mongo database */ 
-			col.insert({name:name, message:message}, function(){
-				console.log('inserted'); /* just to see if it worked */
-			}); /* end insert */ 
+			if(whiteSpacePattern.test(name)||whiteSpacePattern.test(message))
+				console.log('Pls no');
+			else{
+				/* Inserting into mongo database */ 
+				col.insert({name:name, message:message}, function(){
+					console.log('inserted'); /* just to see if it worked */
+				}); /* end insert */ 
+			}/* whitespace checking end */ 
+
+			
 		}); /* end socket */ 
 	});  /* end connection */ 
 }); /* end mongo.connect */ 
