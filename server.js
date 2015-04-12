@@ -22,7 +22,7 @@ mongo.connect('mongodb://127.0.0.1/chat', function(err, db){
 			whiteSpacePattern = /^\s*$/;
 
 			if(whiteSpacePattern.test(name)||whiteSpacePattern.test(message))
-				console.log('Pls no');
+				console.log('oi');
 			else{
 				/* Inserting into mongo database */ 
 				col.insert({name:name, message:message}, function(){

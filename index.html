@@ -38,5 +38,16 @@
             </div> <!-- closing chat class -->
             <!-- Connecting to Nodejs Server and serving socket.io with server ip -->
             <script src="http://127.0.0.1:8080/socket.io/socket.io.js"></script> <!-- server end -->
+            <script>
+            /* to wrap all functionality - so that there aren't any globals */
+                (function()){
+                    var getNode = function(s){
+                        return document.queryselector(s);
+                    },
+
+                    /* getting required nodes */
+                })();
+
+            </script>
         </body>
 </html>
