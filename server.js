@@ -1,18 +1,17 @@
-/* Small test to check nodemon works */ 
+/* Small test to check nodemon works */
 /*console.log('Worked');*/
 
-/* Importing necessary technology */ 
-var mongo = require('mongodb').MongoClient;
-var client = require('socket.io').listen(8080).sockets; 
+/* Importing necessary technology */
+var mongo = require('mongodb').MongoClient; /* Allows us to connect to datavase */
+var client = require('socket.io').listen(8080).sockets;
 
-/* server & callback */
+/* takes server & callback - chat is the name of the database */
 mongo.connect('mongodb://127.0.0.1/chat', function(err, db){
-	if(err) throw err; 
+	if(err) throw err;
 	/* connecting and a closure: whatever needs to be done after client is connected */
 	client.on('connection', function(socket){
-		var col = db.collection('messages'); 
-
-		/* waiting for input */ 
+		var col = db.collection('messages');
+		/* waiting for input */
 		socket.on('input', function(data){
 			/*console.log(data);*/
 			/* grabbing data */
@@ -22,15 +21,15 @@ mongo.connect('mongodb://127.0.0.1/chat', function(err, db){
 			whiteSpacePattern = /^\s*$/;
 
 			if(whiteSpacePattern.test(name)||whiteSpacePattern.test(message))
-				console.log('oi');
+				console.log('oi!');
 			else{
-				/* Inserting into mongo database */ 
+				/* Inserting into mongo database */
 				col.insert({name:name, message:message}, function(){
 					console.log('inserted'); /* just to see if it worked */
-				}); /* end insert */ 
-			}/* whitespace checking end */ 
+				}); /* end insert */
+			}/* whitespace checking end */
 
-			
-		}); /* end socket */ 
-	});  /* end connection */ 
-}); /* end mongo.connect */ 
+
+		}); /* end socket */
+	});  /* end connection */
+}); /* end mongo.connect */
