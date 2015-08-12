@@ -3,6 +3,7 @@ Spur of the moment bones to a chat application using node.js and MongoDB followi
 
 This is purely to learn and just for fun 😸!
 
+###Dependencies 
 To run this project clone the repository and make sure you have mongoDB and Node JS installed. 
 
 In addition to node you will also need to npm install some other things into the project directory:
@@ -11,7 +12,8 @@ In addition to node you will also need to npm install some other things into the
   npm install socket.io
   npm install mongo
 ```
-  
+
+###Development
 ####Getting started with MongoDB
 To get mongo running you will likely have hunt for it in your usr/local/bin/ file. If you can't find where these binaries are located try running the following command in your terminal: 
 
@@ -33,15 +35,15 @@ In another terminal window run:
 
 This will connect us to the database and you will see a connection opened in the terminal running mongod. 
 
-It's important to note that anything that any data that is stored within the database will be saved by default in:
+It's important to note that that any data that is stored within the database will be saved by default in:
 
 ``` cd /data/db ```
 
 You can change this by changing some configurations :P. 
 
 ####Getting Started with NodeJS
-To run the node.js server you simply need to run the following in the directory containing `server.js`:
+In another terminal window/tab you will need to run the node.js server. You can do this by simply running the following command in the directory containing `server.js`:
 
 ``` node server.js``` 
 
-And you should be good to go!
+And you should be good to go by opening the index.html file in a browser!
