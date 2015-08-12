@@ -42,10 +42,10 @@
                         return document.querySelector(s);
                     },
                     /* Get required nodes */
-                    status = getNode('span'),
                     textarea = getNode('.c-textarea'),
                     chatName = getNode('.c-name'),
-
+                    messages = getNode('.c-messages'),
+                    status = getNode('span'),
 
                     statusDef = status.textContent,
                     setStatus = function(s) {
@@ -62,11 +62,29 @@
 
                     try {
                         var socket = io.connect('http://127.0.0.1:8080')
-                    } catch (e) {
+                    }
+                    catch (e) {
                         /* set status to warn user */
                     }
 
                     if(socket !== undefined) {
+                        /* Listen for output */
+                        socket.on('output', function(data){
+                            //console.log(data);
+                            if(data.length) {
+                                for(var x = 0; x < data.length; x = x + 1){
+                                    /* looping through count of messages */
+                                    var message = document.createElement('div');
+                                    message.setAttribute('class', 'c-message');
+                                    message.textContent = data[x].name + ': ' + data[x].message;
+
+                                    messages.appendChild(message);
+                                    /* Inserting in reverse order */
+                                   // messages.insertBefore(message, messages.firstChild);
+                                }
+                            }
+                        });
+
                         /* Listen for status */
                         socket.on('status', function(data) {
                             setStatus((typeof data === 'object') ? data.message : data);
@@ -75,6 +93,7 @@
                                 textarea.value = '';
                             }
                         });
+
                         /* Listen for keydown */
                         textarea.addEventListener('keydown', function(event) {
                             var self = this;
