@@ -37,13 +37,28 @@
             <script src="http://127.0.0.1:8080/socket.io/socket.io.js"></script> <!-- server end -->
 
             <script>
-                (function (){
+                (function () {
                     var getNode = function(s) {
                         return document.querySelector(s);
                     },
                     /* Get required nodes */
+                    status = getNode('span'),
                     textarea = getNode('.c-textarea'),
-                    chatName = getNode('.c-name');
+                    chatName = getNode('.c-name'),
+
+
+                    statusDef = status.textContent,
+                    setStatus = function(s) {
+                        status.textContent = s;
+
+                        if(s !== statusDef) {
+                            var delay = setTimeout(function(){
+                                setStatus(statusDef);
+                                clearInterval(delay);
+                            }, 2500);
+                        }
+                    };
+                    //setStatus('Testing');
 
                     try {
                         var socket = io.connect('http://127.0.0.1:8080')
@@ -51,7 +66,15 @@
                         /* set status to warn user */
                     }
 
-                    if(socket !== undefined){
+                    if(socket !== undefined) {
+                        /* Listen for status */
+                        socket.on('status', function(data) {
+                            setStatus((typeof data === 'object') ? data.message : data);
+
+                            if(data.clear === true) {
+                                textarea.value = '';
+                            }
+                        });
                         /* Listen for keydown */
                         textarea.addEventListener('keydown', function(event) {
                             var self = this;
@@ -62,9 +85,10 @@
                             /* 32 == shit key */
 
                             /* Mulitple lines in the textarea */
-                            if(event.which === 13 && event.shiftKey === false){
+                            if(event.which === 13 && event.shiftKey === false) {
                                 //console.log('Send!');
                                 socket.emit('input', {name: name, message: self.value});
+                                event.preventDefault();
                             }
                         });
                     }

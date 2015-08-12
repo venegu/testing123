@@ -11,6 +11,9 @@ mongo.connect('mongodb://127.0.0.1/chat', function(err, db){
 	/* connecting and a closure: whatever needs to be done after client is connected */
 	client.on('connection', function(socket){
 		var col = db.collection('messages');
+		var sendStatus = function(s) {
+			socket.emit('status', s);
+		};
 		/* waiting for input */
 		socket.on('input', function(data){
 			/*console.log(data);*/
@@ -20,12 +23,18 @@ mongo.connect('mongodb://127.0.0.1/chat', function(err, db){
 			/* Checking for whitespace - regular expression */
 			whiteSpacePattern = /^\s*$/;
 
-			if(whiteSpacePattern.test(name)||whiteSpacePattern.test(message))
-				console.log('oi!');
+			if(whiteSpacePattern.test(name)||whiteSpacePattern.test(message)){
+				//console.log('oi!');
+				sendStatus('Oi! Name & message silly.');
+			}
 			else{
 				/* Inserting into mongo database */
 				col.insert({name:name, message:message}, function(){
-					console.log('inserted'); /* just to see if it worked */
+					//console.log('inserted'); /* just to see if it worked */
+					sendStatus({
+						message: "Sent",
+						clear: true
+					});
 				}); /* end insert */
 			}/* whitespace checking end */
 
