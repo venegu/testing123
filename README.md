@@ -24,6 +24,7 @@ If you're on a Mac it will likely be located in:
 ``` cd /usr/local/bin ```
 
 If you are a Windows user and can't find these binaries try the following: 
+
 ``` where mongo ```
 
 From here you should `cd` into whatever directory the previous command provides on two separate terminal windows. On one of the terminal windows run:
