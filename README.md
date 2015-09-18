@@ -15,13 +15,16 @@ In addition to node you will also need to npm install some other things into the
 
 ###Development
 ####Getting started with MongoDB
-To get mongo running you will likely have hunt for it in your usr/local/bin/ file. If you can't find where these binaries are located try running the following command in your terminal: 
+To get mongo running you will likely have hunt for it in your usr/local/bin/ file. If you are a Mac/Linux user and can't find where these binaries are located try running the following command in your terminal: 
 
 ``` which mongo ```
 
 If you're on a Mac it will likely be located in:
 
 ``` cd /usr/local/bin ```
+
+If you are a Windows user and can't find these binaries try the following: 
+``` where mongo ```
 
 From here you should `cd` into whatever directory the previous command provides on two separate terminal windows. On one of the terminal windows run:
 
